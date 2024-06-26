@@ -36,4 +36,9 @@ export const saveSurveySubmission = async () => {
 	// need to have postOptions as 2nd argument, otherwise it will be a GET request by default
 
 	const response = await fetch("http://localhost:8088/submissions", postOptions)
+
+	const customEvent = new CustomEvent("newSubmissionCreated")
+	// dispatch event - nobody is listening for the event yet - event dispatched to main.js through document
+	// want to invoke render() whenever this event occurs/submission is created
+	document.dispatchEvent(customEvent)
 }
